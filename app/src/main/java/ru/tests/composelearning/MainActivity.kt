@@ -4,17 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import ru.tests.composelearning.ui.theme.ComposeLearningTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,13 +25,25 @@ class MainActivity : ComponentActivity() {
 @Preview
 @Composable
 fun twoColumnPreview() {
-    Row(modifier = Modifier.background(Color.Blue)) {
-        Column() {
+    Row(
+        modifier = Modifier.background(Color.Gray).fillMaxWidth().fillMaxHeight(.5f),
+        horizontalArrangement = Arrangement.SpaceAround,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Column(
+            modifier = Modifier.background(Color.Green).fillMaxHeight().fillMaxWidth(.5f),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceEvenly
+        ) {
             Text("Hello")
             Text("Toffy")
             Text("Test")
         }
-        Column() {
+        Column(
+            modifier = Modifier.background(Color.Red).fillMaxHeight().fillMaxWidth(1f),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceEvenly
+        ) {
             Text("Hello")
             Text("Toffy")
             Text("Test")
