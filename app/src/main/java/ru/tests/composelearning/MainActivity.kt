@@ -32,6 +32,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+
 @Composable
 private fun listItem(name: String, prof: String) {
     Card(
