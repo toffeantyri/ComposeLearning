@@ -1,7 +1,6 @@
 package ru.tests.composelearning
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -19,6 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 
@@ -53,19 +53,32 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun listItem(name: String, prof: String) {
     val counter = remember { mutableStateOf(value = 0) }
+    val color = remember { mutableStateOf(value = Color.White) }
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 10.dp, vertical = 7.dp)
             .offset(x = 1.dp, y = 1.dp)
             .clickable {
-                counter.value++
-                Log.d("MyLog", name)
+                val item = counter.value++
+                when {
+                    item % 2 == 0 -> {
+                        color.value = Color.LightGray
+                    }
+                    else -> {
+                        color.value = Color.White
+                    }
+                }
             },
-        elevation = 5.dp, shape = RoundedCornerShape(10.dp)
+        elevation = 5.dp, shape = RoundedCornerShape(10.dp), backgroundColor = color.value
     ) {
         Box() {
-            Row(modifier = Modifier.padding(5.dp), verticalAlignment = Alignment.CenterVertically) {
+            Row(
+                modifier = Modifier
+                    .padding(5.dp)
+                    .fillMaxSize(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_launcher_background),
                     contentDescription = null,
