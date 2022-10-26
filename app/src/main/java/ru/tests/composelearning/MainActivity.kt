@@ -1,12 +1,16 @@
 package ru.tests.composelearning
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -20,12 +24,23 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Column {
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState())
+            ) {
                 listItem("Tony Shampan", "Programmer")
                 listItem("Tony Shampan2", "Programmer2")
                 listItem("Tony Shampan3", "Programmer3")
                 listItem("Tony Shampan4", "Programmer4")
                 listItem("Tony Shampan5", "Programmer5")
+                listItem("Tony Shampan6", "Programmer6")
+                listItem("Tony Shampan6", "Programmer6")
+                listItem("Tony Shampan6", "Programmer6")
+                listItem("Tony Shampan6", "Programmer6")
+                listItem("Tony Shampan6", "Programmer6")
+                listItem("Tony Shampan6", "Programmer6")
+                listItem("Tony Shampan6", "Programmer6")
+                listItem("Tony Shampan6", "Programmer6")
+                listItem("Tony Shampan6", "Programmer6")
                 listItem("Tony Shampan6", "Programmer6")
             }
         }
@@ -37,7 +52,12 @@ class MainActivity : ComponentActivity() {
 private fun listItem(name: String, prof: String) {
     Card(
         modifier = Modifier
-            .fillMaxWidth().padding(horizontal = 10.dp, vertical = 7.dp),
+            .fillMaxWidth()
+            .padding(horizontal = 10.dp, vertical = 7.dp)
+            .offset(x = 1.dp, y = 1.dp)
+            .clickable {
+                Log.d("MyLog", name)
+            },
         elevation = 5.dp, shape = RoundedCornerShape(10.dp)
     ) {
         Box() {
