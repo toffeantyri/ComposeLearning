@@ -14,6 +14,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -28,20 +30,20 @@ class MainActivity : ComponentActivity() {
                 modifier = Modifier.verticalScroll(rememberScrollState())
             ) {
                 listItem("Tony Shampan", "Programmer")
-                listItem("Tony Shampan2", "Programmer2")
-                listItem("Tony Shampan3", "Programmer3")
-                listItem("Tony Shampan4", "Programmer4")
-                listItem("Tony Shampan5", "Programmer5")
-                listItem("Tony Shampan6", "Programmer6")
-                listItem("Tony Shampan6", "Programmer6")
-                listItem("Tony Shampan6", "Programmer6")
-                listItem("Tony Shampan6", "Programmer6")
-                listItem("Tony Shampan6", "Programmer6")
-                listItem("Tony Shampan6", "Programmer6")
-                listItem("Tony Shampan6", "Programmer6")
-                listItem("Tony Shampan6", "Programmer6")
-                listItem("Tony Shampan6", "Programmer6")
-                listItem("Tony Shampan6", "Programmer6")
+                listItem("Tony Shampan", "Programmer")
+                listItem("Tony Shampan", "Programmer")
+                listItem("Tony Shampan", "Programmer")
+                listItem("Tony Shampan", "Programmer")
+                listItem("Tony Shampan", "Programmer")
+                listItem("Tony Shampan", "Programmer")
+                listItem("Tony Shampan", "Programmer")
+                listItem("Tony Shampan", "Programmer")
+                listItem("Tony Shampan", "Programmer")
+                listItem("Tony Shampan", "Programmer")
+                listItem("Tony Shampan", "Programmer")
+                listItem("Tony Shampan", "Programmer")
+                listItem("Tony Shampan", "Programmer")
+                listItem("Tony Shampan", "Programmer")
             }
         }
     }
@@ -50,12 +52,14 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun listItem(name: String, prof: String) {
+    val counter = remember { mutableStateOf(value = 0) }
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 10.dp, vertical = 7.dp)
             .offset(x = 1.dp, y = 1.dp)
             .clickable {
+                counter.value++
                 Log.d("MyLog", name)
             },
         elevation = 5.dp, shape = RoundedCornerShape(10.dp)
@@ -70,7 +74,7 @@ private fun listItem(name: String, prof: String) {
                         .clip(CircleShape)
                 )
                 Column(modifier = Modifier.padding(start = 10.dp)) {
-                    Text(text = name)
+                    Text(text = name + " " + counter.value.toString())
                     Text(text = prof)
                 }
             }
