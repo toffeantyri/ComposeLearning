@@ -7,6 +7,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -25,12 +26,12 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            LazyColumn(
-            ) {
-                items(count = 100) {
-                    listItem(name = "tony $it", prof = "developer")
+            LazyColumn() {
+                itemsIndexed(
+                    listOf("tony", "stop", "recycle", "me", "please")
+                ) { index, item ->
+                    listItem(item, item)
                 }
-
             }
         }
     }
@@ -74,7 +75,7 @@ private fun listItem(name: String, prof: String) {
                         .clip(CircleShape)
                 )
                 Column(modifier = Modifier.padding(start = 10.dp)) {
-                    Text(text = name + " " + counter.value.toString())
+                    Text(text = name)
                     Text(text = prof)
                 }
             }
